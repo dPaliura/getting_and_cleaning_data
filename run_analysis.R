@@ -10,7 +10,7 @@ library(dplyr)
 ##
 data_url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 loadfile_name <- "data.zip"
-outputfile_name <- "UCI_HAR_feature_averages.csv"
+outputfile_name <- "UCI_HAR_feature_averages.txt"
 
 # used relative folders directions
 dir_in <- "UCI HAR Dataset/"
@@ -124,7 +124,10 @@ tidy_dataset <- dataset %>%
 
 # Create folder to write output file if not exists
 if (!dir.exists(dir_out)) dir.create(dir_out)
-write.csv(tidy_dataset, paste0(dir_out, outputfile_name))
+# and write it
+write.table(tidy_dataset,
+            file = paste0(dir_out, outputfile_name),
+            row.names = FALSE)
 
 
 # Clearing environment after work
